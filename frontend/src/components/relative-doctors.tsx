@@ -26,7 +26,7 @@ function RelativeDoctors({
         Simply broser throught our extendisve list
       </p>
       <div className="w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0">
-        {relDoc.slice(0, 5).map((item, idx) => (
+        {relDoc.slice(0, 5).map((item:{_id:string,image:string, name:string, speciality:string}, idx) => (
           <div
             onClick={() => {
               navigate(`/appointment/${item._id}`);

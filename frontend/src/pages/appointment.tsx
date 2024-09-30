@@ -123,8 +123,8 @@ function Appointment() {
             ))}
           </div>
           <div className="flex items-center gap-3 w-full overflow-x-scroll mt-4">
-            {docSlots && docSlots[slotIndex].map((item, idx)=>(
-              <p className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white':'text-gray-400 border border-gray-300'}`} onClick={()=>setSlotTime(item.time)}>
+            {docSlots && docSlots[slotIndex].map((item:{time:string}, idx:string|number)=>(
+              <p key={idx} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white':'text-gray-400 border border-gray-300'}`} onClick={()=>setSlotTime(item.time)}>
                 {item.time.toLowerCase()}
               </p>
             ))}
