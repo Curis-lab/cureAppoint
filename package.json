@@ -1,0 +1,11 @@
+{
+  "name": "cureAppoint",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Curis-lab/cureAppoint.git",
+  "author": "Boris <72118807+Curis-lab@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
