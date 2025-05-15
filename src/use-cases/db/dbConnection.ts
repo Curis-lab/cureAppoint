@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
 
-const url = "mongodb://localhost:27017/cureAppoint";
-const dbName = "cureAppoint";
+const url = 'mongodb+srv://mathnyanlin:qzQm4V9w3HVoZOJE@appointment.cr39f.mongodb.net/appoint'
+
 
 const connectToDatabase = async () => {
-  await mongoose
-    .connect(url)
-    .then(() => console.log("Connected"))
-    .catch((error) => console.log(error));
+  try {
+    await mongoose.connect(url);
+    console.log("Connect to database");
+  } catch (error) {
+    console.log("Error connecting to database", error);
+  }
 };
 
 export { connectToDatabase };

@@ -5,10 +5,11 @@
   "repository": "https://github.com/Curis-lab/cureAppoint.git",
   "author": "Boris <72118807+Curis-lab@users.noreply.github.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "start": "node src/index.ts",
+    "start": "node dist/index.js",
     "build": "tsc",
-    "dev": "nodemon --exec ts-node src/index.ts"
+    "dev": "nodemon --exec tsx src/index.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -22,8 +23,9 @@
     "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.10.4",
+    "@types/node": "^22.15.18",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.4",
     "typescript": "^5.7.2"
   }
 }

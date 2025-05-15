@@ -51,7 +51,7 @@ const init = async () => {
           state: "Yangon",
         },
       });
-      res.json({ message: "Patient created successfully!" }); // Changed to JSON response
+      res.status(200).json({ message: "Patient created successfully!" }); // Changed to JSON response
     } catch (error) {
       console.log(error);
       res.status(500).send("An error occurred while creating the patient.");
