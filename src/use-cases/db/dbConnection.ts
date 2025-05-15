@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
-const url = 'mongodb+srv://mathnyanlin:qzQm4V9w3HVoZOJE@appointment.cr39f.mongodb.net/appoint'
-
 
 const connectToDatabase = async () => {
   try {
-    await mongoose.connect(url);
+    if (!process.env.MONGO_URL) {
+      return;
+    }
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("Connect to database");
   } catch (error) {
     console.log("Error connecting to database", error);

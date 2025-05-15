@@ -4,6 +4,10 @@ import { Patient } from "./adapters/common/models/patient";
 import bcrypt from "bcryptjs";
 import cors from "cors";
 
+import dotenv from "dotenv";
+
+dotenv.config();
+
 const app = express();
 const port = 3000;
 
@@ -28,13 +32,12 @@ const init = async () => {
   app.post("/", async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
 
+    const existingUser = await Patient.findOne({ email });
 
-    const existingUser = await Patient.findOne({email});
-    
-    if(existingUser){
-        return res.status(400).json({message: "user already exists"});
+    if (existingUser) {
+      return res.status(400).json({ message: "user already exists" });
     }
-    
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     try {
