@@ -10,16 +10,17 @@ const patientSchema = new Schema(
     dateOfBirth: {
       type: Date,
       required: true,
+      default: Date.now
     },
     gender: {
       type: String,
       enum: ["Male", "Female"],
       required: true,
+      default: "Male"
     },
     contactNumber: {
       type: String,
-      required: true,
-      trim: true,
+      required: false,
     },
     email: {
       type: String,
@@ -27,20 +28,24 @@ const patientSchema = new Schema(
       trim: true,
       unique: true,
     },
+    password:{
+      type: String,
+      required:true
+    },
     address: {
       street: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
       },
       city: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
       },
       state: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
       },
       // zipCode: {
