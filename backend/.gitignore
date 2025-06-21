@@ -1,0 +1,23 @@
+# Ignore all files with the .log extension
+*.log
+
+# Ignore all files with the .tmp extension
+*.tmp
+
+# Ignore all files in the temp directory
+temp/
+
+# Ignore all files in the build directory
+build/
+
+# Ignore all files in the dist directory
+dist/
+
+# Ignore all files in the node_modules directory
+node_modules/
+
+# Ignore all files in the .env file
+.env
+
+# Ignore all files in the .DS_Store file (common on macOS)
+.DS_Store

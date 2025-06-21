@@ -1,42 +1,37 @@
 import { useState } from "react";
+import fetcher from "../api/fetcher";
+import useForm from "../hooks/useForm";
 
 function Login() {
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const defaultFormData = { name: "", email: "", password: "" };
-  const [formData, setFormData] = useState({ ...defaultFormData });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const { formData, handleChange, handleSubmit } = useForm<{
+    name: string;
+    email: string;
+    password: string;
+  }>(defaultFormData);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const submit = async () => {
+    const response = await fetcher(
+      "http://localhost:3000/api/patient/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
 
-    fetch('http://localhost:3000/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-
-    console.log(formData);
-    setFormData({...defaultFormData});
+    console.log("this is response", response);
   };
   return (
-    <form className="min-h-[80vh] flex items-center" onSubmit={handleSubmit}>
+    <form
+      className="min-h-[80vh] flex items-center"
+      onSubmit={(e) => handleSubmit(e, submit)}
+    >
       <div className="flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border">
         <p className="text-2xl font-semibold">
           {isLogin ? "Create Account" : "Login"}
@@ -50,7 +45,7 @@ function Login() {
               type="text"
               name="name"
               value={formData.name}
-              onChange={e=>handleChange(e, 'name')}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         )}
@@ -61,7 +56,7 @@ function Login() {
             type="email"
             name="email"
             value={formData.email}
-            onChange={e=>handleChange(e, 'email')}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div className="w-full">
@@ -71,10 +66,13 @@ function Login() {
             type="password"
             name="password"
             value={formData.password}
-            onChange={e=>handleChange(e, 'password')}
+            onChange={(e) => handleChange(e)}
           />
         </div>
-        <button className="bg-primary text-white w-full py-2 rounded-md text-base" type="submit">
+        <button
+          className="bg-primary text-white w-full py-2 rounded-md text-base"
+          type="submit"
+        >
           {isLogin ? "Create Account" : "Log In"}
         </button>
         {isLogin ? (
