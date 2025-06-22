@@ -18,8 +18,8 @@ POST http://localhost:8000/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "email":"man@gmail.com",
-    "password":"man"
+    "email":"tuntun@gmail.com",
+    "password":"tuntun"
 }
 
 ### get all users
@@ -30,6 +30,8 @@ Content-Type: application/json
 ###get single user
 GET http://localhost:8000/api/v1/user/685614c3eb64125df048c31c
 Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTYxNGMzZWI2NDEyNWRmMDQ4YzMxYyIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzUwNDgyNTQxLCJleHAiOjE3NTE3Nzg1NDF9.EmSRqPdlH88wMXcudGjIlSzdihZtYYaz3fHzR_MGuYk
+
 
 ###delete single user
 DELETE http://localhost:8000/api/v1/user/685614c3eb64125df048c31c
@@ -48,7 +50,7 @@ GET http://localhost:8000/api/v1/doctors
 Content-Type: application/json
 
 
-###get single user
+###get single doctor
 GET http://localhost:8000/api/v1/doctors/685601d9a7206c468dd3d3f5
 Content-Type: application/json
 
@@ -62,4 +64,14 @@ Content-Type: application/json
 
 {
     "name": "tun tun"
+}
+
+### write review for doctor
+POST http://localhost:8000/api/v1/doctors/685601d9a7206c468dd3d3f5/reviews
+Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTYxNGMzZWI2NDEyNWRmMDQ4YzMxYyIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzUwNDkzNDg2LCJleHAiOjE3NTE3ODk0ODZ9.nGPiHeAGGadfl6bUenaMiwW1ZLtJYVeFCli2_ujfWrg
+
+{
+    "reviewText":"good experience",
+    "rating":5
 }
